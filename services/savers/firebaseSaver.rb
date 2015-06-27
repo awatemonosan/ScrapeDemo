@@ -1,13 +1,5 @@
 require 'firebase'
-require 'digest/sha1'
 $firebase = Firebase::Client.new(Firebase_uri)
-
-# def saveRawToFirebase(event, uri, raw)
-#   puts "Raw/#{Digest::SHA1.hexdigest uri.request_uri}"
-#   fbObj = $firebase.update("Raw/#{Digest::SHA1.hexdigest uri.request_uri}", raw)
-#   D.trigger('rawSaved', fbObj)
-# end
-# D.register('rawFetched', method(:saveRawToFirebase))
 
 def saveLeagueToFirebase(event, data)
   fbObj = $firebase.update("Leagues/#{data['id']}", data)
