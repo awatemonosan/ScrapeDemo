@@ -5,6 +5,7 @@ def scrapeLeagueAppsForLeagues(event, uri, doc)
 
   D.trigger('leagueUpdated', data)
 end
+D.register('leagueAppsFound', method(:scrapeLeagueAppsForLeagues))
 
 def scrapeLeagueAppsForTeams(event, uri, doc)
   doc.css('span.team-score a').each do |element|
@@ -16,6 +17,7 @@ def scrapeLeagueAppsForTeams(event, uri, doc)
     D.trigger('teamUpdated', data)
   end
 end
+D.register('leagueAppsFound', method(:scrapeLeagueAppsForTeams))
 
 def scrapeLeagueAppsForLocations(event, uri, doc)
   doc.css('em.game-meta a').each do |element|
@@ -26,10 +28,11 @@ def scrapeLeagueAppsForLocations(event, uri, doc)
     D.trigger('locationUpdated', data)
   end
 end
+D.register('leagueAppsFound', method(:scrapeLeagueAppsForLocations))
 
-def scrapeLeagueAppsForPlayers(event, uri, doc)
-  # TODO: this.
-end
+# def scrapeLeagueAppsForPlayers(event, uri, doc)
+# end
+# D.register('leagueAppsFound', method(:scrapeLeagueAppsForPlayers))
 
 def scrapeLeagueAppsForGames(event, uri, doc)
   doc.css('div.game').each do |element|
@@ -53,11 +56,4 @@ def scrapeLeagueAppsForGames(event, uri, doc)
     D.trigger('gameUpdated', data)
   end
 end
-
-# Whenever a leageApps page is found, scrape it.
-D.register('leagueAppsFound', method(:scrapeLeagueAppsForLeagues))
-D.register('leagueAppsFound', method(:scrapeLeagueAppsForTeams))
-D.register('leagueAppsFound', method(:scrapeLeagueAppsForLocations))
-# No player information on this page. Next line commented out.
-# D.register('leagueAppsFound', method(:scrapeLeagueAppsForPlayers))
 D.register('leagueAppsFound', method(:scrapeLeagueAppsForGames))
