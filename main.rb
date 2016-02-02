@@ -7,12 +7,12 @@ require 'libs/bigD'
 require 'config'
 
 # Services
-require 'services/debugger'
-require 'services/fetcher'
-require 'services/parser'
-require 'services/analyzers/leagueAppsAnalyzer'
-require 'services/scrapers/leagueAppsScraper'
-require 'services/savers/firebaseSaver'
+require 'controllers/debugger'
+require 'controllers/fetcher'
+require 'controllers/parser'
+require 'controllers/analyzers/leagueAppsAnalyzer'
+require 'controllers/scrapers/leagueAppsScraper'
+require 'controllers/savers/firebaseSaver'
 
 #fire off the first fetch request
 D.trigger('requestFetch', 'http://superhockeyleague1.leagueapps.com/leagues/56625/schedule')
